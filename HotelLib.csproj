@@ -43,7 +43,10 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="Booking.cs" />
-    <Compile Include="BookingHandler.cs" />
+    <Compile Include="BookingException.cs" />
+    <Compile Include="BookingHandlerSingleton.cs" />
+    <Compile Include="SuiteException.cs" />
+    <Compile Include="TooManyPeopleException.cs" />
     <Compile Include="Guest.cs" />
     <Compile Include="Hotel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

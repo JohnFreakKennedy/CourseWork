@@ -1,29 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HotelLib
 {
     public class Hotel
     {
         private readonly string _hotelName;
-        private Suite[] _rooms;
-        private Booking[] _bookings;
-        public static DateTime currentDate = DateTime.UtcNow;
-        public Hotel(string hotelName,Suite[] rooms)
+        private List<Suite> Suites;
+        private decimal _settlementAccount;
+        public Hotel(string hotelName, List<Suite> suites)
         {
             _hotelName = hotelName;
-            _rooms = rooms;
+            _settlementAccount = 0;
+            Suites = null;
+            foreach(var suite in suites)
+            {
+                Suites.Add(suite);
+            }
         }
-        public void Tomorrow()
+
+        public List<Suite>  GetSuitesDatabase()
         {
-            currentDate.AddDays(1);
+            return Suites;
         }
-        public Booking[] GetBookingDataBase()
+        public void AddSuiteToHotel(Suite suite)
         {
-            return _bookings;
-        }
-        public Suite[] GetSuitesDatabase()
-        {
-            return _rooms;
+            if (suite.Hotel == null) Suites.Add(suite); 
         }
     }
 }
