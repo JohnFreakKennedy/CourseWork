@@ -326,6 +326,7 @@ namespace HotelLib
             {
                 if (!Char.IsDigit(passport[i])) return null;
             }
+            if (passport.Length != 9) return null;
             uint parsedPassport = Convert.ToUInt32(passport);
             Guest guest;
             try
