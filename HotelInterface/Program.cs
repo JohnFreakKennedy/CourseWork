@@ -8,7 +8,6 @@ namespace HotelLib
     {
         static void Main()
         {
-            List<Suite> suites = new List<Suite>();
             Hotel California = HotelFillingSimulation();
             HandlerFillingSimulation(California);
             while (true)
@@ -286,11 +285,7 @@ namespace HotelLib
             string login = Console.ReadLine();
             Console.WriteLine("Password:");
             string password = ReadPassword();
-            foreach(var guest in BookingHandlerSingleton.Instance.GuestDB)
-            {
-                if (guest.Login == login && guest.Password == password) return guest;
-            }
-            return null;
+            return BookingHandlerSingleton.Instance.GuestDBLogin(login, password);
         }
 
         static Admin AdminLogin()
@@ -302,11 +297,7 @@ namespace HotelLib
             string login = Console.ReadLine();
             Console.WriteLine("Password:");
             string password = ReadPassword();
-            foreach (var admin in BookingHandlerSingleton.Instance.AdminDB)
-            {
-                if (admin.Login == login && admin.Password == password) return admin;
-            }
-            return null;
+            return BookingHandlerSingleton.Instance.AdminDBLogin(login, password);
         }
         static Guest GuestSignUp()
         {
