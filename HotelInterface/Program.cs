@@ -136,12 +136,12 @@ namespace HotelLib
         static void HandlerFillingSimulation(Hotel hotel)
         {
             BookingHandlerSingleton bookingHandler = new BookingHandlerSingleton();
-            string[] names = { "Serediuk Valentyn","Dankov Artem","Gusak Mykhaylo","Kurenna Anna"};
-            string[] logins = {"serediukit","asapforever", "hurmaze","tteaman"};
-            string[] passwords = { "valik050703", "hvost1234", "mishakrut228", "kuranet17" };
-            string[] passportIDs = { "105410589", "171384404", "134567682", "517790397" };
-            DateTime[] birthDates = { new DateTime(2003, 07, 05), new DateTime(2003, 06, 26), new DateTime(2002, 01, 28) };
-            for(int i = 0;i<names.Length-1;i++)
+            string[] names = { "Serediuk Valentyn","Dankov Artem","Gusak Mykhaylo","Kurenna Anna","Chyzhevskyi Dmytro"};
+            string[] logins = {"serediukit","asapforever", "hurmaze","tteaman","piton57"};
+            string[] passwords = { "valik050703", "hvost1234", "mishakrut228", "kuranet17","saddoggy" };
+            string[] passportIDs = { "105410589", "171384404", "134567682", "517790397","959535970" };
+            DateTime[] birthDates = { new DateTime(2003, 07, 05), new DateTime(2003, 06, 26), new DateTime(2003,05,05),new DateTime(2002, 01, 28), new DateTime(2003, 03, 26) };
+            for(int i = 0;i<names.Length;i++)
             {
                 uint parsePass = Convert.ToUInt32(passportIDs[i]);
                 Guest guest = new Guest(names[i], logins[i], passwords[i], parsePass, birthDates[i]);
