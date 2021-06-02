@@ -37,9 +37,10 @@ namespace HotelLib
             foreach(var DBBooking in BookingDB)
             {
                 if (DBBooking.Hotel == booking.Hotel && DBBooking.Suite == booking.Suite) suiteMatch = true;
-                if (suiteMatch && booking.BookingFrom > DBBooking.BookingFrom && booking.BookingTo < DBBooking.BookingTo) return false;
-                if (suiteMatch && booking.BookingTo > DBBooking.BookingFrom && booking.BookingFrom < DBBooking.BookingFrom) return false;
-                if (suiteMatch && booking.BookingFrom < DBBooking.BookingTo && booking.BookingTo > DBBooking.BookingTo) return false;
+                if (suiteMatch && booking.BookingFrom.Date == DBBooking.BookingFrom.Date && booking.BookingTo.Date == DBBooking.BookingTo.Date) return false;
+                if (suiteMatch && booking.BookingFrom.Date == DBBooking.BookingFrom.Date && booking.BookingTo.Date < DBBooking.BookingTo.Date) return false;
+                if (suiteMatch && booking.BookingFrom.Date > DBBooking.BookingFrom.Date && booking.BookingTo.Date == DBBooking.BookingTo.Date) return false;
+                if (suiteMatch && booking.BookingFrom.Date > DBBooking.BookingFrom.Date && booking.BookingTo.Date < DBBooking.BookingTo.Date) return false;
             }
             BookingDB.Add(booking);
             return true;
@@ -72,6 +73,24 @@ namespace HotelLib
             }
             HotelDB.Add(hotel);
             return true;
+        }
+
+        public Guest GuestDBLogin(string login, string password)
+        {
+            foreach (var guest in BookingHandlerSingleton.Instance.GuestDB)
+            {
+                if (guest.Login == login && guest.Password == password) return guest;
+            }
+            return null;
+        }
+
+        public Admin AdminDBLogin(string login, string password)
+        {
+            foreach (var admin in BookingHandlerSingleton.Instance.AdminDB)
+            {
+                if (admin.Login == login && admin.Password == password) return admin;
+            }
+            return null;
         }
 
         public Guest GetGuestByID(uint value)

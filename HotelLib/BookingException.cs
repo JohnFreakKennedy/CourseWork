@@ -10,7 +10,7 @@ namespace HotelLib
         }
 
         public BookingException(Booking booking)
-            : base(String.Format("A problem with booking occured: {0}", booking.ID.ToString()))
+            : base(String.Format("The suite is booked on these dates: {0}", booking.ID.ToString()))
         {
 
         }
