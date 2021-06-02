@@ -11,6 +11,8 @@ namespace HotelLib
             List<Suite> suites = new List<Suite>();
             Hotel California = HotelFillingSimulation();
             HandlerFillingSimulation(California);
+            while (true)
+            { 
             PrintMainMenu();
             string choiceres = String.Empty;
             choiceres = EternalEnter();
@@ -18,7 +20,7 @@ namespace HotelLib
             string UserIDstr = "";
             Guest guest = null;
             Admin admin = null;
-            switch(choiceres[0])
+            switch (choiceres[0])
             {
                 case ('1'):
                     for (int i = 1; i < choiceres.Length; i++)
@@ -66,8 +68,8 @@ namespace HotelLib
                         EternalGuestMenu(guest);
                         break;
                     case ("5"):
-                        EternalEnter();
-                        break;
+                        Console.Clear();
+                        continue;
                     case ("6"):
                         return;
                     default:
@@ -78,29 +80,34 @@ namespace HotelLib
             }
             if (guest == null)
             {
-                    choiceres = EternalAdminMenu();
-                    switch (choiceres)
-                    {
-                        case ("2"):
-                            ShowHotelSuitesInfo(California);
-                            EternalAdminMenu();
-                            break;
-                        case ("3"):
-                            string res3 = EternalAdminMenu();
-                            if (res3 == "3") EternalAdminMenu();
-                            break;
-                        case ("4"):
-                            string res4 = EternalAdminMenu();
-                            BookingHandlerSingleton.Instance.ChangeDate();
-                            Console.WriteLine("Today is " + BookingHandlerSingleton.Instance.CurrentDate);
-                            if (res4 == "4") EternalAdminMenu();
-                            break;
-                        default:
-                            Console.WriteLine("Wrong input, returning to admin menu...");
-                            EternalAdminMenu();
-                            break;
-                    }
+                choiceres = EternalAdminMenu();
+                switch (choiceres)
+                {
+                    case ("2"):
+                        ShowHotelSuitesInfo(California);
+                        EternalAdminMenu();
+                        break;
+                    case ("3"):
+                        string res3 = EternalAdminMenu();
+                        if (res3 == "3") EternalAdminMenu();
+                        break;
+                    case ("4"):
+                        string res4 = EternalAdminMenu();
+                        BookingHandlerSingleton.Instance.ChangeDate();
+                        Console.WriteLine("Today is " + BookingHandlerSingleton.Instance.CurrentDate);
+                        if (res4 == "4") EternalAdminMenu();
+                        break;
+                    case ("6"):
+                        continue;
+                    case ("7"):
+                        return;
+                    default:
+                        Console.WriteLine("Wrong input, returning to admin menu...");
+                        EternalAdminMenu();
+                        break;
+                }
             }
+        }
         }
         static Hotel HotelFillingSimulation()
         {
@@ -501,7 +508,7 @@ namespace HotelLib
         }
         static string EternalAdminMenu()
         {
-            Console.WriteLine("Guest Menu:");
+            Console.WriteLine("Admin Menu:");
             Console.WriteLine("1-Show suites info");
             Console.WriteLine("2-Show booking info");
             Console.WriteLine("3-Check settlement account");
@@ -550,10 +557,9 @@ namespace HotelLib
                         break;
                     case ("6"):
                         Console.Clear();
-                        Main();
-                        break;
+                        return "6";
                     case ("7"):
-                        return " ";
+                        return "7";
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Wrong input");
