@@ -6,10 +6,10 @@ namespace HotelLib
     public class BookingHandlerSingleton
     {
         private static BookingHandlerSingleton instance;
-        private List <Booking> BookingDB;
+        public List<Booking> BookingDB { get; private set; }
         public List<Guest> GuestDB { get; private set; }
         public List<Admin> AdminDB { get; private set; }
-        private List<Hotel> HotelDB;
+        public List<Hotel> HotelDB { get; private set; }
         /// <summary>
         /// Put private access level on DBs later
         /// </summary>
@@ -27,7 +27,8 @@ namespace HotelLib
         public DateTime CurrentDate { get; private set; }
         public void ChangeDate()
         {
-            CurrentDate.AddDays(1);
+            TimeSpan span = new TimeSpan(1, 0, 0, 0, 0);
+            CurrentDate = CurrentDate + span;
             Status();
         }
         public bool TryAddBookingToDB(Booking booking)
@@ -64,7 +65,7 @@ namespace HotelLib
         public bool TryAddHotelToDB(Hotel hotel)
         {
             if (hotel.hotelName == null) return false;
-            if (hotel.GetSuitesDatabase() == null) return false;
+            if (hotel.Suites == null) return false;
             foreach (var DBHotel in HotelDB)
             {
                 if (DBHotel.hotelName == hotel.hotelName) return false;
@@ -88,6 +89,13 @@ namespace HotelLib
                 if (admin.UserID == value) return admin;
             }
             return null;
+        }
+        public void RemoveBooking(Booking booking)
+        {
+            foreach(var DBBooking in BookingDB)
+            {
+                if (DBBooking.ID == booking.ID) BookingDB.Remove(booking);
+            }    
         }
         public void Status()
         {

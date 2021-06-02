@@ -6,7 +6,7 @@ namespace HotelLib
     public class Hotel
     {
         public readonly string hotelName;
-        private List<Suite> Suites;
+        public List<Suite> Suites { get; private set; }
         public decimal SettlementAccount { get; private set; }
         public Hotel(string hotelName, List<Suite> suites)
         {
@@ -16,9 +16,13 @@ namespace HotelLib
             if (BookingHandlerSingleton.Instance.TryAddHotelToDB(this) == false) throw new ArgumentException("A problem occured while creating a Hotel");
         }
 
-        public List<Suite>  GetSuitesDatabase()
+        public Suite GetSuiteByID(uint value)
         {
-            return Suites;
+            foreach(var suite in Suites)
+            {
+                if (suite.roomID == value) return suite;
+            }
+            return null;
         }
 
         public void AddSuiteToHotel(Suite suite)
