@@ -182,7 +182,7 @@ namespace HotelLib
 
         static void PrintMainMenu()
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("Welcome to the hotel 'California'!");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Today's date:" + BookingHandlerSingleton.Instance.CurrentDate.ToString());
@@ -408,7 +408,7 @@ namespace HotelLib
                     case ("5"):
                         return "5";
                     case ("6"):
-                        return " ";
+                        return "6";
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Wrong input");
@@ -567,7 +567,6 @@ namespace HotelLib
                         break;
                 }
             }
-            return " ";
         }
         static DateTime StringToDateTime(string strDate) // (YYYY/MM/DD)-string format
         {
