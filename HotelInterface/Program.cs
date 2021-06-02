@@ -308,9 +308,9 @@ namespace HotelLib
             string login = Console.ReadLine();
             Console.WriteLine("Put your password: ");
             string password = ReadPassword();
-            Console.WriteLine("Put your first name(first lowercase):");
+            Console.WriteLine("Put your first name(first uppercase):");
             string fname = Console.ReadLine();
-            Console.WriteLine("Put your last name(first lowercase):");
+            Console.WriteLine("Put your last name(first uppercase):");
             string lname = Console.ReadLine();
             string name = fname + " " + lname;
             Console.WriteLine("Put your passport ID:");
