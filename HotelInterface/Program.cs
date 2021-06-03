@@ -11,102 +11,102 @@ namespace HotelLib
             Hotel California = HotelFillingSimulation();
             HandlerFillingSimulation(California);
             while (true)
-            { 
-            PrintMainMenu();
-            string choiceres = String.Empty;
-            choiceres = EternalEnter();
-            uint UserID = 0;
-            string UserIDstr = "";
-            Guest guest = null;
-            Admin admin = null;
-            switch (choiceres[0])
             {
-                case ('1'):
-                    for (int i = 1; i < choiceres.Length; i++)
-                    {
-                        UserIDstr = UserIDstr + choiceres[i];
-                    }
-                    UserID = Convert.ToUInt32(UserIDstr);
-                    guest = BookingHandlerSingleton.Instance.GetGuestByID(UserID);
-                    break;
-                case ('2'):
-                    for (int i = 1; i < choiceres.Length; i++)
-                    {
-                        UserIDstr = UserIDstr + choiceres[i];
-                    }
-                    UserID = Convert.ToUInt32(UserIDstr);
-                    admin = BookingHandlerSingleton.Instance.GetAdminByID(UserID);
-                    break;
-                case ('3'):
-                    for (int i = 1; i < choiceres.Length; i++)
-                    {
-                        UserIDstr = UserIDstr + choiceres[i];
-                    }
-                    UserID = Convert.ToUInt32(UserIDstr);
-                    guest = BookingHandlerSingleton.Instance.GetGuestByID(UserID);
-                    break;
-                case ('4'):
-                    return;
-            }
-            if (admin == null)
-            {
-                choiceres = EternalGuestMenu(guest);
-                switch (choiceres)
+                PrintMainMenu();
+                string choiceres = String.Empty;
+                choiceres = EternalEnter();
+                uint UserID = 0;
+                string UserIDstr = "";
+                Guest guest = null;
+                Admin admin = null;
+                switch (choiceres[0])
                 {
-                    case ("2"):
-                        string res = GuestBooking(guest);
-                        if (res == " ") EternalGuestMenu(guest);
+                    case ('1'):
+                        for (int i = 1; i < choiceres.Length; i++)
+                        {
+                            UserIDstr = UserIDstr + choiceres[i];
+                        }
+                        UserID = Convert.ToUInt32(UserIDstr);
+                        guest = BookingHandlerSingleton.Instance.GetGuestByID(UserID);
                         break;
-                    case ("3"):
-                        string resExt = GuestBooking(guest);
-                        if (resExt == " ") EternalGuestMenu(guest);
+                    case ('2'):
+                        for (int i = 1; i < choiceres.Length; i++)
+                        {
+                            UserIDstr = UserIDstr + choiceres[i];
+                        }
+                        UserID = Convert.ToUInt32(UserIDstr);
+                        admin = BookingHandlerSingleton.Instance.GetAdminByID(UserID);
                         break;
-                    case ("4"):
-                        BookingHandlerSingleton.Instance.ChangeDate();
-                        Console.WriteLine("Today is " + BookingHandlerSingleton.Instance.CurrentDate);
-                        EternalGuestMenu(guest);
+                    case ('3'):
+                        for (int i = 1; i < choiceres.Length; i++)
+                        {
+                            UserIDstr = UserIDstr + choiceres[i];
+                        }
+                        UserID = Convert.ToUInt32(UserIDstr);
+                        guest = BookingHandlerSingleton.Instance.GetGuestByID(UserID);
                         break;
-                    case ("5"):
-                        Console.Clear();
-                        continue;
-                    case ("6"):
+                    case ('4'):
                         return;
-                    default:
-                        Console.WriteLine("Wrong input, returning to guest menu...");
-                        EternalGuestMenu(guest);
-                        break;
+                }
+                if (admin == null)
+                {
+                    choiceres = EternalGuestMenu(guest);
+                    switch (choiceres)
+                    {
+                        case ("2"):
+                            string res = GuestBooking(guest);
+                            if (res == " ") EternalGuestMenu(guest);
+                            break;
+                        case ("3"):
+                            string resExt = GuestBooking(guest);
+                            if (resExt == " ") EternalGuestMenu(guest);
+                            break;
+                        case ("4"):
+                            BookingHandlerSingleton.Instance.ChangeDate();
+                            Console.WriteLine("Today is " + BookingHandlerSingleton.Instance.CurrentDate);
+                            EternalGuestMenu(guest);
+                            break;
+                        case ("5"):
+                            Console.Clear();
+                            continue;
+                        case ("6"):
+                            return;
+                        default:
+                            Console.WriteLine("Wrong input, returning to guest menu...");
+                            EternalGuestMenu(guest);
+                            break;
+                    }
+                }
+                if (guest == null)
+                {
+                    choiceres = EternalAdminMenu();
+                    switch (choiceres)
+                    {
+                        case ("2"):
+                            ShowHotelSuitesInfo(California);
+                            EternalAdminMenu();
+                            break;
+                        case ("3"):
+                            string res3 = EternalAdminMenu();
+                            if (res3 == "3") EternalAdminMenu();
+                            break;
+                        case ("4"):
+                            string res4 = EternalAdminMenu();
+                            BookingHandlerSingleton.Instance.ChangeDate();
+                            Console.WriteLine("Today is " + BookingHandlerSingleton.Instance.CurrentDate);
+                            if (res4 == "4") EternalAdminMenu();
+                            break;
+                        case ("6"):
+                            continue;
+                        case ("7"):
+                            return;
+                        default:
+                            Console.WriteLine("Wrong input, returning to admin menu...");
+                            EternalAdminMenu();
+                            break;
+                    }
                 }
             }
-            if (guest == null)
-            {
-                choiceres = EternalAdminMenu();
-                switch (choiceres)
-                {
-                    case ("2"):
-                        ShowHotelSuitesInfo(California);
-                        EternalAdminMenu();
-                        break;
-                    case ("3"):
-                        string res3 = EternalAdminMenu();
-                        if (res3 == "3") EternalAdminMenu();
-                        break;
-                    case ("4"):
-                        string res4 = EternalAdminMenu();
-                        BookingHandlerSingleton.Instance.ChangeDate();
-                        Console.WriteLine("Today is " + BookingHandlerSingleton.Instance.CurrentDate);
-                        if (res4 == "4") EternalAdminMenu();
-                        break;
-                    case ("6"):
-                        continue;
-                    case ("7"):
-                        return;
-                    default:
-                        Console.WriteLine("Wrong input, returning to admin menu...");
-                        EternalAdminMenu();
-                        break;
-                }
-            }
-        }
         }
         static Hotel HotelFillingSimulation()
         {
@@ -120,36 +120,36 @@ namespace HotelLib
             capArr[1] = Suite.Capacity.Double;
             capArr[2] = Suite.Capacity.Twinn;
             capArr[3] = Suite.Capacity.Family;
-            for(int i = 0; i<typeArr.Length;i++)
+            for (int i = 0; i < typeArr.Length; i++)
             {
-                for(int j=0; j<capArr.Length;j++)
+                for (int j = 0; j < capArr.Length; j++)
                 {
                     Suite suite = new Suite(typeArr[i], capArr[j]);
                     suites.Add(suite);
                 }
             }
-            Hotel hotel = new Hotel("California", suites);
+            Hotel hotel = new Hotel("Kleopatra", suites);
             return hotel;
         }
 
         static void HandlerFillingSimulation(Hotel hotel)
         {
             BookingHandlerSingleton bookingHandler = new BookingHandlerSingleton();
-            string[] names = { "Serediuk Valentyn","Dankov Artem","Gusak Mykhaylo","Kurenna Anna","Chyzhevskyi Dmytro"};
-            string[] logins = {"serediukit","asapforever", "hurmaze","tteaman","piton57"};
-            string[] passwords = { "valik050703", "hvost1234", "mishakrut228", "kuranet17","saddoggy" };
-            string[] passportIDs = { "105410589", "171384404", "134567682", "517790397","959535970" };
-            DateTime[] birthDates = { new DateTime(2003, 07, 05), new DateTime(2003, 06, 26), new DateTime(2003,05,05),new DateTime(2002, 01, 28), new DateTime(2003, 03, 26) };
-            for(int i = 0;i<names.Length;i++)
+            string[] names = { "Dankov Artem", "Serediuk Valentyn",  "Gusak Mykhaylo", "Kurenna Anna", "Chyzhevskyi Dmytro" };
+            string[] logins = { "asapforever", "serediukit", "hurmaze", "tteaman", "piton57" };
+            string[] passwords = { "hvost1234", "invoker",  "dotakrut228", "kuranet17", "saddoggy" };
+            string[] passportIDs = { "105410589", "171384404", "134567682", "517790397", "959535970" };
+            DateTime[] birthDates = { new DateTime(2003, 06, 26), new DateTime(2003, 07, 05), new DateTime(2003, 05, 05), new DateTime(2002, 01, 28), new DateTime(2003, 03, 26) };
+            for (int i = 0; i < names.Length; i++)
             {
                 uint parsePass = Convert.ToUInt32(passportIDs[i]);
                 Guest guest = new Guest(names[i], logins[i], passwords[i], parsePass, birthDates[i]);
             }
-            string[] adminData = { "asapforever","hvost1234","Dankov Artem"};
+            string[] adminData = { "asapforever", "hvost1234", "Dankov Artem" };
             Admin admin = new Admin(adminData[0], adminData[1], adminData[2]);
             return;
         }
-        
+
         static void ShowHotelSuitesInfo(Hotel hotel)
         {
             List<Suite> suites = hotel.Suites;
@@ -164,18 +164,18 @@ namespace HotelLib
             Console.WriteLine("'''''''''''''''''''''''''''''''''''");
             if (suite.Free == true) Console.ForegroundColor = ConsoleColor.Green;
             else Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Suite "+suite.roomID.ToString()+" INFO:");
+            Console.WriteLine("Suite " + suite.RoomID.ToString() + " INFO:");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Number: "+suite.roomID.ToString());
-            Console.WriteLine("Type: "+suite.RoomType.ToString());
-            Console.WriteLine("Capacity:"+suite.SuiteCapacity.ToString());
-            Console.WriteLine("Maximum people to live: "+suite.PeopleMaxAmount.ToString());
-            Console.WriteLine("Suite area: "+ suite.Area.ToString()+" sq m");
-            Console.WriteLine("Has WiFi : "+suite.WiFi.ToString());
-            Console.WriteLine("Has TV Video player : "+suite.TVvideoPlayer.ToString());
-            Console.WriteLine("Has big TV: "+suite.BigTV.ToString());
-            Console.WriteLine("Has additional service: "+suite.AdditionalService.ToString());
-            Console.WriteLine("Price for night: "+suite.PriceForNight.ToString());
+            Console.WriteLine("Number: " + suite.RoomID.ToString());
+            Console.WriteLine("Type: " + suite.RoomType.ToString());
+            Console.WriteLine("Capacity:" + suite.SuiteCapacity.ToString());
+            Console.WriteLine("Maximum people to live: " + suite.PeopleMaxAmount.ToString());
+            Console.WriteLine("Suite area: " + suite.Area.ToString() + " sq m");
+            Console.WriteLine("Has WiFi : " + suite.WiFi.ToString());
+            Console.WriteLine("Has TV Video player : " + suite.TVvideoPlayer.ToString());
+            Console.WriteLine("Has big TV: " + suite.BigTV.ToString());
+            Console.WriteLine("Has additional service: " + suite.AdditionalService.ToString());
+            Console.WriteLine("Price for night: " + suite.PriceForNight.ToString());
             Console.WriteLine("'''''''''''''''''''''''''''''''''''");
         }
 
@@ -187,7 +187,7 @@ namespace HotelLib
             Console.WriteLine("Today's date:" + BookingHandlerSingleton.Instance.CurrentDate.ToString());
             Console.WriteLine("1-Login as a Guest");
             Console.WriteLine("2-Login as an Admin");
-            Console.WriteLine("3-Sign up (as a guest only)");
+            Console.WriteLine("3-Sign up");
             Console.WriteLine("4-Exit");
         }
 
@@ -326,7 +326,7 @@ namespace HotelLib
                 DateTime birthDate = StringToDateTime(Console.ReadLine());
                 guest = new Guest(name, login, password, parsedPassport, birthDate);
             }
-            catch(FormatException ex)
+            catch (FormatException ex)
             {
                 Console.WriteLine(ex.Message);
                 return null;
@@ -366,7 +366,7 @@ namespace HotelLib
             return password;
         }
 
-        static string EternalGuestMenu(Guest guest)
+        static void ShowEternalGuestMenu()
         {
             Console.WriteLine("Guest Menu:");
             Console.WriteLine("1-Show suites info");
@@ -375,6 +375,11 @@ namespace HotelLib
             Console.WriteLine("4-Change date");
             Console.WriteLine("5-Log Out");
             Console.WriteLine("6-Exit");
+        }
+
+        static string EternalGuestMenu(Guest guest)
+        {
+            ShowEternalGuestMenu();
             while (true)
             {
                 Console.WriteLine("Please, put your option below:");
@@ -383,15 +388,15 @@ namespace HotelLib
                 {
                     case ("1"):
                         ShowHotelSuitesInfo(BookingHandlerSingleton.Instance.HotelDB[0]);
-                        EternalGuestMenu(guest);
+                        ShowEternalGuestMenu();
                         break;
                     case ("2"):
                         string str = GuestBooking(guest);
-                        if(str==" ")EternalGuestMenu(guest);
+                        if (str == " ") ShowEternalGuestMenu();
                         break;
                     case ("3"):
                         string strExt = GuestBooking(guest);
-                        if (strExt == " ") EternalGuestMenu(guest);
+                        if (strExt == " ") ShowEternalGuestMenu();
                         break;
                     case ("4"):
                         BookingHandlerSingleton.Instance.ChangeDate();
@@ -405,6 +410,7 @@ namespace HotelLib
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Wrong input");
                         Console.ForegroundColor = ConsoleColor.White;
+                        ShowEternalGuestMenu();
                         break;
                 }
             }
@@ -418,7 +424,7 @@ namespace HotelLib
             Console.WriteLine("Please, put the number of suite you want to book:");
             SuiteID = Convert.ToUInt32(Console.ReadLine());
             suite = BookingHandlerSingleton.Instance.HotelDB[0].GetSuiteByID(SuiteID);
-            if (suite==null)
+            if (suite == null)
             {
                 Console.WriteLine("Suite was not found, please, try again...");
                 GuestBooking(guest);
@@ -429,7 +435,7 @@ namespace HotelLib
             {
                 dateFrom = StringToDateTime(Console.ReadLine());
             }
-            catch(FormatException ex)
+            catch (FormatException ex)
             {
                 Console.WriteLine(ex.Message);
                 return " ";
@@ -445,39 +451,45 @@ namespace HotelLib
                 return " ";
             }
             Console.WriteLine("Please, put the amount of guests for your booking:");
-            uint amount= Convert.ToUInt32(Console.ReadLine());
+            uint amount = Convert.ToUInt32(Console.ReadLine());
             Booking booking = null;
             try
             {
                 booking = new Booking(BookingHandlerSingleton.Instance.HotelDB[0], guest, suite, dateFrom, dateTo, amount);
             }
-            catch(ArgumentNullException ex)
+            catch (ArgumentNullException ex)
             {
                 Console.WriteLine(ex.ParamName);
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("You've set the wrong parameters, returning to Guest menu");
                 return " ";
             }
-            catch(ArgumentException ex)
+            catch (ArgumentException ex)
             {
                 Console.WriteLine(ex.ParamName);
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Something went wrong, returning to Guest menu");
                 return " ";
             }
-            catch(BookingException ex)
+            catch (BookingException ex)
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Something went wrong, returning to Guest menu");
                 return " ";
             }
-            Console.WriteLine("The total price is:" + booking.TotalPrice.ToString());
+            catch (TooManyPeopleException ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Something went wrong, returning to Guest menu");
+                return " ";
+            }
+            Console.WriteLine("The total price is: " + booking.TotalPrice.ToString());
             Console.WriteLine("Do you agree to book this suite?(Y/N):");
             string agree = " ";
-            while(true)
+            while (true)
             {
                 agree = Console.ReadLine();
-                if(agree=="Y")
+                if (agree == "Y")
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Booking was made succesfully");
@@ -498,7 +510,8 @@ namespace HotelLib
                 else Console.WriteLine("Wrong input,try again:");
             }
         }
-        static string EternalAdminMenu()
+
+        static void ShowEternalAdminMenu()
         {
             Console.WriteLine("Admin Menu:");
             Console.WriteLine("1-Show suites info");
@@ -508,6 +521,11 @@ namespace HotelLib
             Console.WriteLine("5-Change suites");
             Console.WriteLine("6-Log Out");
             Console.WriteLine("7-Exit");
+        }
+
+        static string EternalAdminMenu()
+        {
+            ShowEternalAdminMenu();
             while (true)
             {
                 Console.WriteLine("Please, choose the option below");
@@ -542,7 +560,7 @@ namespace HotelLib
                             PrintSuiteInfo(BookingHandlerSingleton.Instance.HotelDB[0].GetSuiteByID(ID));
                             ChangeSuite(BookingHandlerSingleton.Instance.HotelDB[0].GetSuiteByID(ID));
                         }
-                        catch(FormatException ex)
+                        catch (FormatException ex)
                         {
                             Console.WriteLine(ex.Message);
                         }
@@ -555,7 +573,8 @@ namespace HotelLib
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Wrong input");
-                        EternalAdminMenu();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        ShowEternalAdminMenu();
                         break;
                 }
             }
@@ -568,15 +587,15 @@ namespace HotelLib
             int year = 0;
             int month = 0;
             int day = 0;
-            for (int i = 0; i<4;i++)
+            for (int i = 0; i < 4; i++)
             {
-                strYear = strYear+strDate[i];
+                strYear = strYear + strDate[i];
             }
             for (int i = 5; i < 7; i++)
             {
                 strMonth = strMonth + strDate[i];
             }
-            for(int i = 8;i<10;i++)
+            for (int i = 8; i < 10; i++)
             {
                 strDay = strDay + strDate[i];
             }
@@ -586,7 +605,7 @@ namespace HotelLib
             DateTime date = new DateTime(year, month, day);
             return date;
         }
-        
+
         static void PrintBookingInfo(Booking booking)
         {
             Console.WriteLine("Booking ID: " + booking.ID.ToString());
@@ -617,23 +636,23 @@ namespace HotelLib
             bool flag = true;
             while (flag)
             {
-                    choice = Console.ReadLine();
-                    if (choice == "1")
-                    {
-                        type = Suite.Type.Standard;
-                        flag = false;
-                    }
-                    if (choice == "2")
-                    {
-                        type = Suite.Type.SemiLuxe;
-                        flag = false;
-                    }
-                    if (choice == "3")
-                    {
-                        type = Suite.Type.Luxe;
-                        flag = false;
-                    }
-                    else Console.WriteLine("Wrong input, try again: ");
+                choice = Console.ReadLine();
+                if (choice == "1")
+                {
+                    type = Suite.Type.Standard;
+                    flag = false;
+                }
+                if (choice == "2")
+                {
+                    type = Suite.Type.SemiLuxe;
+                    flag = false;
+                }
+                if (choice == "3")
+                {
+                    type = Suite.Type.Luxe;
+                    flag = false;
+                }
+                else Console.WriteLine("Wrong input, try again: ");
             }
             flag = true;
             Console.WriteLine("Choose suite capacity:");
@@ -643,38 +662,38 @@ namespace HotelLib
             Console.WriteLine("4-Family");
             while (flag)
             {
-            choice = Console.ReadLine();
+                choice = Console.ReadLine();
                 if (choice == "1")
-                    {
-                        capacity = Suite.Capacity.Single;
-                        flag = false;
-                    }
-                if (choice == "2")
-                    {
-                        capacity = Suite.Capacity.Double;
-                        flag = false;
-                    }
-                if (choice == "3")
-                    {
-                        capacity = Suite.Capacity.Twinn;
-                        flag = false;
-                    }
-                if (choice == "4")
-                    {
-                        capacity = Suite.Capacity.Family;
-                        flag = false;
-                    }
-                else Console.WriteLine("Wrong input, try again: ");
+                {
+                    capacity = Suite.Capacity.Single;
+                    flag = false;
                 }
-                suite = new Suite(type, capacity);
-                Console.WriteLine("The suite was changed succesfully(auto)");
-                EternalAdminMenu();
+                if (choice == "2")
+                {
+                    capacity = Suite.Capacity.Double;
+                    flag = false;
+                }
+                if (choice == "3")
+                {
+                    capacity = Suite.Capacity.Twinn;
+                    flag = false;
+                }
+                if (choice == "4")
+                {
+                    capacity = Suite.Capacity.Family;
+                    flag = false;
+                }
+                else Console.WriteLine("Wrong input, try again: ");
+            }
+            suite = new Suite(type, capacity);
+            Console.WriteLine("The suite was changed succesfully(auto)");
+            EternalAdminMenu();
         }
         static bool LogicChoice()
         {
             string str;
             Console.WriteLine("Make your choice(Y/N):");
-            while(true)
+            while (true)
             {
                 str = Console.ReadLine();
                 if (str == "Y") return true;
