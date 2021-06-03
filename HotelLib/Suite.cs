@@ -16,7 +16,7 @@ namespace HotelLib
         private static uint IDcounter = 1;
         public Hotel Hotel { get; private set; }
         public Type RoomType { get; private set; }
-        public uint roomID { get; private set; }
+        public uint RoomID { get; private set; }
         public uint PeopleMaxAmount { get; private set; }
         public uint Area { get; private set; }
         public bool WiFi { get; private set; }
@@ -26,10 +26,10 @@ namespace HotelLib
         public Capacity SuiteCapacity { get; private set; }
         public decimal PriceForNight { get; private set; }
         public bool Free { get; private set; }
-        public Suite(Hotel Hotel,Type type, Capacity capacity)
+        public Suite(Hotel Hotel, Type type, Capacity capacity)
         {
             this.Hotel = Hotel;
-            roomID = IDcounter;
+            RoomID = IDcounter;
             IDcounter++;
             Area = 0;
             PriceForNight = 0;
@@ -96,7 +96,7 @@ namespace HotelLib
         public Suite(Type type, Capacity capacity)
         {
             this.Hotel = null;
-            roomID = IDcounter;
+            RoomID = IDcounter;
             IDcounter++;
             Area = 0;
             PriceForNight = 0;
@@ -163,11 +163,11 @@ namespace HotelLib
                     throw new ArgumentException("Wrong capacity was set while adding a Suite");
             }
         }
-        public void RoomChange(Type RoomType, Capacity SuiteCapacity,  uint roomID, uint PeopleMaxAmount, uint Area, bool WiFi, bool TVvideoPlayer, bool BigTV, bool AdditionalService, decimal PriceForNight)
-            {
+        public void RoomChange(Type RoomType, Capacity SuiteCapacity, uint roomID, uint PeopleMaxAmount, uint Area, bool WiFi, bool TVvideoPlayer, bool BigTV, bool AdditionalService, decimal PriceForNight)
+        {
             this.RoomType = RoomType;
             this.SuiteCapacity = SuiteCapacity;
-            this.roomID = roomID;
+            this.RoomID = roomID;
             this.PeopleMaxAmount = PeopleMaxAmount;
             this.Area = Area;
             this.WiFi = WiFi;
@@ -175,7 +175,7 @@ namespace HotelLib
             this.BigTV = BigTV;
             this.AdditionalService = AdditionalService;
             this.PriceForNight = PriceForNight;
-            }
+        }
         public void HoldSuite()
         {
             Free = false;
@@ -187,7 +187,7 @@ namespace HotelLib
         public void ResetSuite()
         {
             RoomType = Type.Standard;
-            roomID = 0;
+            RoomID = 0;
             PeopleMaxAmount = 0;
             Area = 0;
             WiFi = false;

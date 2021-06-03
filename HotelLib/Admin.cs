@@ -3,7 +3,7 @@
 
 namespace HotelLib
 {
-    public class Admin:User
+    public class Admin : User
     {
         private static uint AdminIDcounter = 1;
         public Admin(string login, string password, string name)

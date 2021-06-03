@@ -18,20 +18,20 @@ namespace HotelLib
 
         public Suite GetSuiteByID(uint value)
         {
-            foreach(var suite in Suites)
+            foreach (var suite in Suites)
             {
-                if (suite.roomID == value) return suite;
+                if (suite.RoomID == value) return suite;
             }
             return null;
         }
 
         public void AddSuiteToHotel(Suite suite)
         {
-            if (suite.Hotel == null) Suites.Add(suite); 
+            if (suite.Hotel == null) Suites.Add(suite);
         }
         public void PutOnSettlementAccount(decimal amount)
         {
-            SettlementAccount+=amount;
+            SettlementAccount += amount;
         }
     }
 }

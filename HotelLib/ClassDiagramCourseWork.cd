@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HotelLib.Admin">
+    <Position X="0.5" Y="6" Width="1.5" />
+    <InheritanceLine Type="HotelLib.User" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="3.75" />
+        <Point X="1.688" Y="3.75" />
+        <Point X="1.688" Y="6" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Admin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelLib.Booking">
+    <Position X="7" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAQAAAAkAAAAAAAAAAAAAAIQAAAAAAgQAAgAAg=</HashCode>
+      <FileName>Booking.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Hotel" />
+      <Property Name="Guest" />
+      <Property Name="Suite" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="HotelLib.User">
+    <Position X="2.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAwAAAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelLib.Guest">
+    <Position X="4.25" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="HotelLib.User" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4" Y="3.75" />
+        <Point X="4.375" Y="3.75" />
+        <Point X="4.375" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAkAAAAQAAAAABAAAAAAA=</HashCode>
+      <FileName>Guest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelLib.Hotel">
+    <Position X="9.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAgAAAAACAACAAAAAAAAAAAAAAAAAAAAAgABAAAAA=</HashCode>
+      <FileName>Hotel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Suites" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="HotelLib.BookingHandlerSingleton">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <AssociationLine Name="AdminDB" Type="HotelLib.Admin" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5" Y="2.375" />
+        <Point X="1.25" Y="2.375" />
+        <Point X="1.25" Y="6" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="BookingDB" Type="HotelLib.Booking" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.5" Y="2.312" />
+        <Point X="6.5" Y="2.379" />
+        <Point X="7.506" Y="2.379" />
+        <Point X="7.5" Y="2.514" />
+        <Point X="7.5" Y="3.25" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAgAEAAAAAAAEAAAEQwACAADBAEABQAIAAAABAAQ=</HashCode>
+      <FileName>BookingHandlerSingleton.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="AdminDB" />
+      <Property Name="GuestDB" />
+      <Property Name="HotelDB" />
+      <Property Name="BookingDB" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="HotelLib.Suite">
+    <Position X="9.25" Y="6.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="HotelLib.Suite.Type" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Suite.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="HotelLib.Suite.Capacity" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Suite.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAACAEACAAQAMAAAAgAAgAAAAACAACAABACggQAAAAI=</HashCode>
+      <FileName>Suite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

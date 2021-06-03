@@ -10,11 +10,7 @@ namespace HotelLib
         public List<Guest> GuestDB { get; private set; }
         public List<Admin> AdminDB { get; private set; }
         public List<Hotel> HotelDB { get; private set; }
-        /// <summary>
-        /// Put private access level on DBs later
-        /// </summary>
-        /// 
-       
+
         public static BookingHandlerSingleton Instance { get { if (instance == null) instance = new BookingHandlerSingleton(); return instance; } }
         public BookingHandlerSingleton()
         {
@@ -34,7 +30,7 @@ namespace HotelLib
         public bool TryAddBookingToDB(Booking booking)
         {
             bool suiteMatch = false;
-            foreach(var DBBooking in BookingDB)
+            foreach (var DBBooking in BookingDB)
             {
                 if (DBBooking.Hotel == booking.Hotel && DBBooking.Suite == booking.Suite) suiteMatch = true;
                 if (suiteMatch && booking.BookingFrom.Date == DBBooking.BookingFrom.Date && booking.BookingTo.Date == DBBooking.BookingTo.Date) return false;
@@ -48,7 +44,7 @@ namespace HotelLib
 
         public void TryAddGuestToDB(Guest guest)
         {
-            foreach(var DBguest in GuestDB)
+            foreach (var DBguest in GuestDB)
             {
                 if (DBguest.PassportID == guest.PassportID) throw new UserException(guest);
                 if (DBguest.Login == guest.Login) throw new UserException(guest);
@@ -95,7 +91,7 @@ namespace HotelLib
 
         public Guest GetGuestByID(uint value)
         {
-            foreach(var guest in GuestDB)
+            foreach (var guest in GuestDB)
             {
                 if (guest.UserID == value) return guest;
             }
@@ -111,24 +107,27 @@ namespace HotelLib
         }
         public void RemoveBooking(Booking booking)
         {
-            foreach(var DBBooking in BookingDB)
+            foreach (var DBBooking in BookingDB)
             {
-                if (DBBooking.ID == booking.ID) BookingDB.Remove(booking);
-            }    
+                if (DBBooking.ID == booking.ID)
+                {
+                    BookingDB.Remove(booking);
+                    break;
+                }
+            }
         }
         public void Status()
         {
-            foreach(var booking in BookingDB)
+            foreach (var booking in BookingDB)
             {
-                if (CurrentDate > booking.BookingTo) 
-                {
-                    BookingDB.Remove(booking);
-                    booking.Suite.FreeSuite();
-                }
-                if (CurrentDate.Date==booking.BookingFrom.Date)
+                if (CurrentDate.Date == booking.BookingFrom.Date)
                 {
                     booking.Suite.HoldSuite();
                     booking.Hotel.PutOnSettlementAccount(booking.TotalPrice);
+                }
+                if (CurrentDate > booking.BookingTo)
+                {
+                    booking.Suite.FreeSuite();
                 }
             }
         }

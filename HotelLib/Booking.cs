@@ -22,8 +22,8 @@ namespace HotelLib
             if (bookingFrom == null) throw new ArgumentNullException("Booking from", "You have didn't set some of the parameters, please, check your input and try again...");
             if (bookingTo == null) throw new ArgumentNullException("Booking to", "You have didn't set some of the parameters, please, check your input and try again...");
             if (guestAmount == 0) throw new ArgumentNullException("Guest amount", "You have didn't set some of the parameters, please, check your input and try again...");
-            if (bookingFrom>bookingTo) throw new ArgumentException("Dates are incorrect, please, check your input and try again...");
-            if (bookingFrom<BookingHandlerSingleton.Instance.CurrentDate || bookingTo < BookingHandlerSingleton.Instance.CurrentDate) throw new ArgumentException("Dates are incorrect, please, check your input and try again...");
+            if (bookingFrom > bookingTo) throw new ArgumentException("Dates are incorrect, please, check your input and try again...");
+            if (bookingFrom < BookingHandlerSingleton.Instance.CurrentDate || bookingTo < BookingHandlerSingleton.Instance.CurrentDate) throw new ArgumentException("Dates are incorrect, please, check your input and try again...");
             if (guestAmount > 5) throw new ArgumentException("The hotel isn't able to room such amount of guests, please divide your bookings or put another amount of guests");
             if (bookingFrom < BookingHandlerSingleton.Instance.CurrentDate || bookingTo < BookingHandlerSingleton.Instance.CurrentDate) throw new ArgumentException("Booking from", "Date,that you want to book has passed already, please, try again...");
             if (suite.SuiteCapacity == Suite.Capacity.Single && guestAmount > 1) throw new TooManyPeopleException(guestAmount);
@@ -35,7 +35,7 @@ namespace HotelLib
             if (suite.SuiteCapacity == Suite.Capacity.Double && guestAmount > 2) throw new TooManyPeopleException(guestAmount);
             if (suite.SuiteCapacity == Suite.Capacity.Twinn && guestAmount > 2) throw new TooManyPeopleException(guestAmount);
             ID = IDcounter;
-            BookingFrom = new DateTime(bookingFrom.Year,bookingFrom.Month,bookingFrom.Day,16,0,0);
+            BookingFrom = new DateTime(bookingFrom.Year, bookingFrom.Month, bookingFrom.Day, 16, 0, 0);
             BookingTo = new DateTime(bookingTo.Year, bookingTo.Month, bookingTo.Day, 12, 0, 0);
             Hotel = hotel;
             Guest = guest;
