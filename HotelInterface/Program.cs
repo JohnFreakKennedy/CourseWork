@@ -128,18 +128,18 @@ namespace HotelLib
                     suites.Add(suite);
                 }
             }
-            Hotel hotel = new Hotel("Kleopatra", suites);
+            Hotel hotel = new Hotel("California", suites);
             return hotel;
         }
 
         static void HandlerFillingSimulation(Hotel hotel)
         {
             BookingHandlerSingleton bookingHandler = new BookingHandlerSingleton();
-            string[] names = { "Dankov Artem", "Serediuk Valentyn",  "Gusak Mykhaylo", "Kurenna Anna", "Chyzhevskyi Dmytro" };
-            string[] logins = { "asapforever", "serediukit", "hurmaze", "tteaman", "piton57" };
-            string[] passwords = { "hvost1234", "invoker",  "dotakrut228", "kuranet17", "saddoggy" };
-            string[] passportIDs = { "105410589", "171384404", "134567682", "517790397", "959535970" };
-            DateTime[] birthDates = { new DateTime(2003, 06, 26), new DateTime(2003, 07, 05), new DateTime(2003, 05, 05), new DateTime(2002, 01, 28), new DateTime(2003, 03, 26) };
+            string[] names = { "Dankov Artem", "Yulia Kramar", "Serediuk Valentyn",  "Gusak Mykhaylo", "Kurenna Anna", "Chyzhevskyi Dmytro" };
+            string[] logins = { "asapforever", "dotnetgoddess","serediukit", "hurmaze", "tteaman", "piton57" };
+            string[] passwords = { "hvost1234","filimon", "invoker",  "dotakrut228", "kuranet17", "saddoggy" };
+            string[] passportIDs = { "105410589", "171384405", "171384404", "134567682", "517790397", "959535970" };
+            DateTime[] birthDates = { new DateTime(2003, 06, 26), new DateTime(1990, 01, 01), new DateTime(2003, 07, 05), new DateTime(2003, 05, 05), new DateTime(2002, 01, 28), new DateTime(2003, 03, 26) };
             for (int i = 0; i < names.Length; i++)
             {
                 uint parsePass = Convert.ToUInt32(passportIDs[i]);
